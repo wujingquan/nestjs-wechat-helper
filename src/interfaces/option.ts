@@ -3,6 +3,8 @@ export interface IWechatHelperModuleOptions {
   appsecret: string;
   token: string;
   path: string;
+  encodingAESKey?: string;
+  checkSignature?: string;
   isGlobal?: boolean;
 }
 
