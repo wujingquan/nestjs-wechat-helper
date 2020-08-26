@@ -22,7 +22,7 @@ export const WECHAT_HELPER_MODULE_OPTIONS_TOKEN = Symbol(
 export class WechatHelperModule {
   constructor(
     @Inject(WECHAT_HELPER_MODULE_OPTIONS_TOKEN)
-    private readonly options,
+    private readonly options: IWechatHelperModuleOptions,
   ) {}
 
   static Register(options: IWechatHelperModuleOptions): DynamicModule {
@@ -89,10 +89,12 @@ export class WechatHelperModule {
     if (this.options.path) {
       consumer
         .apply(
-          WechatMiddleware(this.options, (requser, response, next) => {
-            console.log('debug debug');
-            next();
-          }),
+          WechatMiddleware(
+            this.options,
+            (request: any, response: any, next: any) => {
+              next();
+            },
+          ),
         )
         .forRoutes(this.options.path);
     }

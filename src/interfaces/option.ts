@@ -10,7 +10,9 @@ export interface IWechatHelperModuleOptions {
 
 export interface IWechatHelperModuleAsyncOptions {
   isGlobal?: boolean;
-  imports?: [any];
-  injects?: [any];
-  useFactory?: () => IWechatHelperModuleOptions;
+  imports?: any[];
+  injects?: any[];
+  useFactory: (
+    ...args: any[]
+  ) => Promise<IWechatHelperModuleOptions> | IWechatHelperModuleOptions;
 }
